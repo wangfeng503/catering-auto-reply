@@ -1,0 +1,160 @@
+<view class="container">
+  <!-- 步骤指示器 -->
+  <view class="step-indicator">
+    <view class="step {{currentStep >= 1 ? 'active' : ''}}">
+      <view class="step-dot">1</view>
+      <view class="step-text">输入评价</view>
+    </view>
+    <view class="step-line {{currentStep >= 2 ? 'active' : ''}}"></view>
+    <view class="step {{currentStep >= 2 ? 'active' : ''}}">
+      <view class="step-dot">2</view>
+      <view class="step-text">选择配置</view>
+    </view>
+    <view class="step-line {{currentStep >= 3 ? 'active' : ''}}"></view>
+    <view class="step {{currentStep >= 3 ? 'active' : ''}}">
+      <view class="step-dot">3</view>
+      <view class="step-text">生成结果</view>
+    </view>
+  </view>
+
+  <!-- 步骤 1：输入评价 -->
+  <view class="step-content" wx:if="{{currentStep === 1}}">
+    <view class="card">
+      <view class="card-title">粘贴顾客评价</view>
+      <textarea 
+        class="textarea-field" 
+        placeholder="请粘贴顾客的评价内容...&#10;&#10;例如：&#10;这家店的火锅真的太好吃了！锅底很香，食材新鲜，服务员态度也很好，下次还会再来！"
+        value="{{reviewContent}}"
+        bindinput="onReviewInput"
+        maxlength="500"
+      />
+      <view class="char-count">{{reviewContent.length}}/500</view>
+    </view>
+
+    <view class="card">
+      <view class="card-title">补充信息（可选）</view>
+      <input 
+        class="input-field" 
+        placeholder="店铺名称"
+        value="{{shopName}}"
+        bindinput="onShopNameInput"
+      />
+      <input 
+        class="input-field mt-12" 
+        placeholder="特色菜品或优惠活动"
+        value="{{specialInfo}}"
+        bindinput="onSpecialInfoInput"
+      />
+    </view>
+
+    <button class="btn-primary" bindtap="goToStep2">下一步</button>
+  </view>
+
+  <!-- 步骤 2：选择配置 -->
+  <view class="step-content" wx:if="{{currentStep === 2}}">
+    <view class="card">
+      <view class="card-title">店铺类型</view>
+      <view class="tag-group">
+        <view 
+          class="tag {{shopType === item ? 'active' : ''}}" 
+          wx:for="{{shopTypes}}" 
+          wx:key="*this"
+          bindtap="selectShopType"
+          data-type="{{item}}"
+        >{{item}}</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-title">评价类型</view>
+      <view class="tag-group">
+        <view 
+          class="tag {{ratingType === item.value ? 'active' : ''}}" 
+          wx:for="{{ratingTypes}}" 
+          wx:key="value"
+          bindtap="selectRatingType"
+          data-type="{{item.value}}"
+        >{{item.label}}</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-title">回复风格</view>
+      <view class="tag-group">
+        <view 
+          class="tag {{style === item.value ? 'active' : ''}}" 
+          wx:for="{{styles}}" 
+          wx:key="value"
+          bindtap="selectStyle"
+          data-style="{{item.value}}"
+        >{{item.label}}</view>
+      </view>
+    </view>
+
+    <view class="btn-group">
+      <button class="btn-secondary" bindtap="goToStep1">上一步</button>
+      <button class="btn-primary" bindtap="generateReply">生成回复</button>
+    </view>
+  </view>
+
+  <!-- 步骤 3：生成结果 -->
+  <view class="step-content" wx:if="{{currentStep === 3}}">
+    <!-- 加载中 -->
+    <view class="loading" wx:if="{{isLoading}}">
+      <view class="loading-spinner"></view>
+      <view class="loading-text">AI 正在生成回复...</view>
+      <view class="loading-sub">预计需要 3-5 秒</view>
+    </view>
+
+    <!-- 生成结果 -->
+    <view class="result-section" wx:if="{{!isLoading && replies.length > 0}}">
+      <view class="result-header">
+        <view class="result-title">生成结果</view>
+        <view class="result-subtitle">共 {{replies.length}} 条备选回复</view>
+      </view>
+
+      <view class="reply-list">
+        <view class="reply-item" wx:for="{{replies}}" wx:key="index">
+          <view class="reply-index">回复 {{index + 1}}</view>
+          <view class="reply-content">{{item}}</view>
+          <view class="reply-actions">
+            <view class="action-btn copy" bindtap="copyReply" data-index="{{index}}">
+              <text>📋</text> 复制
+            </view>
+            <view class="action-btn favorite" bindtap="favoriteReply" data-index="{{index}}">
+              <text>⭐</text> 收藏
+            </view>
+            <view class="action-btn regenerate" bindtap="regenerateSingle" data-index="{{index}}">
+              <text>🔄</text> 重生成
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="btn-group">
+        <button class="btn-secondary" bindtap="goToStep1">重新输入</button>
+        <button class="btn-primary" bindtap="regenerateAll">重新生成</button>
+      </view>
+    </view>
+
+    <!-- 错误提示 -->
+    <view class="error-section" wx:if="{{!isLoading && errorMsg}}">
+      <view class="error-icon">⚠️</view>
+      <view class="error-text">{{errorMsg}}</view>
+      <button class="btn-primary" bindtap="generateReply">重新尝试</button>
+    </view>
+  </view>
+
+  <!-- 会员限制提示 -->
+  <view class="limit-modal" wx:if="{{showLimitModal}}">
+    <view class="limit-content">
+      <view class="limit-icon">🔒</view>
+      <view class="limit-title">今日免费次数已用完</view>
+      <view class="limit-desc">免费用户每日可生成 5 条回复</view>
+      <view class="limit-action">
+        <button class="btn-primary" bindtap="goToMember">升级会员 9.9元/月</button>
+        <view class="limit-close" bindtap="closeLimitModal">稍后再说</view>
+      </view>
+    </view>
+  </view>
+</view>
