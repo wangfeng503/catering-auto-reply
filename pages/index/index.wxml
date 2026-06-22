@@ -1,0 +1,93 @@
+<view class="container">
+  <!-- 顶部横幅 -->
+  <view class="header-banner">
+    <view class="header-title">餐饮评价回复助手</view>
+    <view class="header-subtitle">AI 智能生成，3秒回复一条评价</view>
+  </view>
+
+  <!-- 今日统计 -->
+  <view class="stats-card">
+    <view class="stats-item">
+      <view class="stats-num">{{remainingCount}}</view>
+      <view class="stats-label">今日剩余次数</view>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <view class="stats-num">{{todayGenerated}}</view>
+      <view class="stats-label">今日已生成</view>
+    </view>
+    <view class="stats-divider"></view>
+    <view class="stats-item">
+      <view class="stats-num">{{totalGenerated}}</view>
+      <view class="stats-label">累计生成</view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-actions">
+    <view class="action-card" bindtap="goToGenerate">
+      <view class="action-icon generate">✏️</view>
+      <view class="action-title">生成回复</view>
+      <view class="action-desc">粘贴评价，AI 智能生成</view>
+    </view>
+    <view class="action-card" bindtap="goToHistory">
+      <view class="action-icon history">📋</view>
+      <view class="action-title">历史记录</view>
+      <view class="action-desc">查看过往生成内容</view>
+    </view>
+    <view class="action-card" bindtap="goToTemplates">
+      <view class="action-icon template">💡</view>
+      <view class="action-title">话术库</view>
+      <view class="action-desc">学习优秀回复案例</view>
+    </view>
+  </view>
+
+  <!-- 使用引导（首次进入显示） -->
+  <view class="guide-section" wx:if="{{showGuide}}">
+    <view class="guide-title">3 步快速上手</view>
+    <view class="guide-steps">
+      <view class="guide-step">
+        <view class="step-num">1</view>
+        <view class="step-text">粘贴顾客评价</view>
+      </view>
+      <view class="step-arrow">→</view>
+      <view class="guide-step">
+        <view class="step-num">2</view>
+        <view class="step-text">选择回复风格</view>
+      </view>
+      <view class="step-arrow">→</view>
+      <view class="guide-step">
+        <view class="step-num">3</view>
+        <view class="step-text">一键生成复制</view>
+      </view>
+    </view>
+    <view class="guide-close" bindtap="closeGuide">知道了</view>
+  </view>
+
+  <!-- 会员推广 -->
+  <view class="member-banner" wx:if="{{!isMember}}" bindtap="goToMember">
+    <view class="member-content">
+      <view class="member-title">升级会员，无限次生成</view>
+      <view class="member-desc">9.9 元/月，畅享全部功能</view>
+    </view>
+    <view class="member-btn">立即开通</view>
+  </view>
+
+  <!-- 最近生成 -->
+  <view class="recent-section" wx:if="{{recentList.length > 0}}">
+    <view class="section-header">
+      <view class="section-title">最近生成</view>
+      <view class="section-more" bindtap="goToHistory">查看全部 ></view>
+    </view>
+    <view class="recent-list">
+      <view class="recent-item" wx:for="{{recentList}}" wx:key="id" bindtap="viewDetail" data-id="{{item.id}}">
+        <view class="recent-review">{{item.reviewContent}}</view>
+        <view class="recent-reply">{{item.replyContent}}</view>
+        <view class="recent-meta">
+          <text class="recent-type {{item.ratingType}}">{{item.ratingTypeText}}</text>
+          <text class="recent-time">{{item.createTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
