@@ -1,0 +1,56 @@
+<view class="container">
+  <!-- 会员权益 -->
+  <view class="member-header">
+    <view class="member-title">升级会员</view>
+    <view class="member-price">
+      <text class="price-num">9.9</text>
+      <text class="price-unit">元/月</text>
+    </view>
+    <view class="member-original">原价 19.9 元/月</view>
+  </view>
+
+  <!-- 权益列表 -->
+  <view class="benefits-card">
+    <view class="benefits-title">会员权益</view>
+    <view class="benefit-item">
+      <view class="benefit-icon">✅</view>
+      <view class="benefit-text">
+        <view class="benefit-name">无限次生成</view>
+        <view class="benefit-desc">不受每日 5 条限制，随时生成</view>
+      </view>
+    </view>
+    <view class="benefit-item">
+      <view class="benefit-icon">✅</view>
+      <view class="benefit-text">
+        <view class="benefit-name">高级模板</view>
+        <view class="benefit-desc">解锁营销引导、幽默风趣等高级风格</view>
+      </view>
+    </view>
+    <view class="benefit-item">
+      <view class="benefit-icon">✅</view>
+      <view class="benefit-text">
+        <view class="benefit-name">优先响应</view>
+        <view class="benefit-desc">AI 生成速度更快，无需排队</view>
+      </view>
+    </view>
+    <view class="benefit-item">
+      <view class="benefit-icon">✅</view>
+      <view class="benefit-text">
+        <view class="benefit-name">历史记录永久保存</view>
+        <view class="benefit-desc">免费版仅保存最近 100 条</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 购买按钮 -->
+  <button class="btn-buy" bindtap="purchaseMember">立即开通会员</button>
+
+  <!-- 说明 -->
+  <view class="notice">
+    <view class="notice-title">购买说明</view>
+    <view class="notice-item">1. 会员服务按月计费，到期自动续费</view>
+    <view class="notice-item">2. 可随时在"我的"页面取消续费</view>
+    <view class="notice-item">3. 开通后权益立即生效</view>
+    <view class="notice-item">4. 不支持退款，请确认后购买</view>
+  </view>
+</view>
