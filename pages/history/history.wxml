@@ -1,0 +1,48 @@
+<view class="container">
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-item {{filterType === 'all' ? 'active' : ''}}" bindtap="setFilter" data-type="all">全部</view>
+    <view class="filter-item {{filterType === 'good' ? 'active' : ''}}" bindtap="setFilter" data-type="good">好评</view>
+    <view class="filter-item {{filterType === 'medium' ? 'active' : ''}}" bindtap="setFilter" data-type="medium">中评</view>
+    <view class="filter-item {{filterType === 'bad' ? 'active' : ''}}" bindtap="setFilter" data-type="bad">差评</view>
+  </view>
+
+  <!-- 搜索框 -->
+  <view class="search-bar">
+    <input 
+      class="search-input" 
+      placeholder="搜索评价内容..."
+      value="{{searchKeyword}}"
+      bindinput="onSearchInput"
+    />
+  </view>
+
+  <!-- 历史列表 -->
+  <view class="history-list" wx:if="{{filteredList.length > 0}}">
+    <view class="history-item" wx:for="{{filteredList}}" wx:key="id">
+      <view class="item-header">
+        <view class="item-type {{item.ratingType}}">{{item.ratingTypeText}}</view>
+        <view class="item-time">{{item.createTime}}</view>
+      </view>
+      <view class="item-review">{{item.reviewContent}}</view>
+      <view class="item-reply">{{item.replyContent}}</view>
+      <view class="item-meta">
+        <text class="meta-tag">{{item.shopType}}</text>
+        <text class="meta-tag">{{item.styleText}}</text>
+      </view>
+      <view class="item-actions">
+        <view class="action-btn" bindtap="copyReply" data-index="{{index}}">复制</view>
+        <view class="action-btn" bindtap="viewDetail" data-index="{{index}}">查看</view>
+        <view class="action-btn delete" bindtap="deleteItem" data-index="{{index}}">删除</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{filteredList.length === 0}}">
+    <view class="empty-icon">📋</view>
+    <view class="empty-text">暂无历史记录</view>
+    <view class="empty-sub">去生成第一条回复吧</view>
+    <button class="btn-primary" bindtap="goToGenerate">去生成</button>
+  </view>
+</view>
