@@ -1,0 +1,171 @@
+.container {
+  padding: 16px;
+  padding-bottom: 32px;
+}
+
+/* 用户卡片 */
+.user-card {
+  background: linear-gradient(135deg, #c45c3e, #d4735a);
+  border-radius: 16px;
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.user-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.3);
+  margin-right: 16px;
+}
+
+.user-avatar open-data {
+  width: 100%;
+  height: 100%;
+}
+
+.user-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.user-status {
+  display: flex;
+  align-items: center;
+}
+
+.member-badge {
+  display: inline-block;
+  background: #fff;
+  color: #c45c3e;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.free-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+/* 统计卡片 */
+.stats-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 16px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.stats-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stats-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: #c45c3e;
+  margin-bottom: 4px;
+}
+
+.stats-label {
+  font-size: 12px;
+  color: #999;
+}
+
+.stats-divider {
+  width: 1px;
+  height: 40px;
+  background: #e8e8e8;
+}
+
+/* 会员推广 */
+.member-banner {
+  background: linear-gradient(135deg, #2d6a4f, #40916c);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.member-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.member-desc {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.member-btn {
+  background: #fff;
+  color: #2d6a4f;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 菜单列表 */
+.menu-list {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 20px;
+  margin-right: 12px;
+  width: 24px;
+  text-align: center;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 15px;
+  color: #1a1a1a;
+}
+
+.menu-arrow {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* 版本信息 */
+.version-info {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 12px;
+  color: #999;
+}
