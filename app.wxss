@@ -1,0 +1,153 @@
+/** 全局样式 **/
+page {
+  background-color: #faf9f7;
+  color: #1a1a1a;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* 通用容器 */
+.container {
+  padding: 16px;
+}
+
+/* 卡片样式 */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+/* 按钮样式 */
+.btn-primary {
+  background: linear-gradient(135deg, #c45c3e, #d4735a);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.btn-primary:active {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: #f0eeeb;
+  color: #666;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #f0eeeb;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #666;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.tag.active {
+  background: #c45c3e;
+  color: #fff;
+}
+
+/* 输入框样式 */
+.input-field {
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  min-height: 44px;
+}
+
+.textarea-field {
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  width: 100%;
+  min-height: 120px;
+}
+
+/* 结果展示 */
+.result-box {
+  background: #f8f6f3;
+  border-left: 4px solid #2d6a4f;
+  padding: 16px;
+  border-radius: 0 8px 8px 0;
+  margin: 12px 0;
+}
+
+/* 加载动画 */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #c45c3e;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+.empty-state image {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 16px;
+}
+
+/* 会员标识 */
+.member-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #c45c3e, #d4735a);
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* 分割线 */
+.divider {
+  height: 1px;
+  background: #e8e8e8;
+  margin: 16px 0;
+}
+
+/* 浮动按钮 */
+.fab {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #c45c3e, #d4735a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(196, 92, 62, 0.3);
+  color: #fff;
+  font-size: 24px;
+}
